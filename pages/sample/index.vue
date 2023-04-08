@@ -11,6 +11,16 @@ const menus: Menu[]= [
     active: true
   },
   {
+    name: 'Payment',
+    to: '/sample/payment',
+    active: true
+  },
+  {
+    name: 'Tweet',
+    to: '/sample/tweet',
+    active: true
+  },
+  {
     name: '準備中...',
     to: '/',
     active: false
