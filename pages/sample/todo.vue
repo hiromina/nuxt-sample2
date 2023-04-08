@@ -4,8 +4,8 @@ type Item = {
   isDone: boolean;
 };
 
-let items: Item[] = reactive([]);
-let newItem = '';
+const items: Item[] = ref([]);
+const newItem = ref<string>('');
 
 function addItem(value: string) {
   if(!value) return;
@@ -13,16 +13,19 @@ function addItem(value: string) {
     value: value,
     isDone: false
   }
-  items.push(itemObj);
-  newItem = '';
+  items.value.push(itemObj);
+  newItem.value = '';
 }
 
 function deleteItem() {
-  // TODO 上手く動かない。
-  // チェックを付ける →削除ボタンを押しても削除されない →削除対象のチェックを外そうとクリックすると、やっと画面から消える。
-  items = items.filter(item => !item.isDone);
-  console.log('削除');
+  // itemsをrefではなくreactiveにすると上手く動かない。
+  items.value = items.value.filter(item => !item.isDone);
 }
+
+onUpdated(() => {
+  console.log('updated');
+});
+
 </script>
 
 <template>
@@ -30,7 +33,7 @@ function deleteItem() {
   <input type="text" v-model="newItem"> <button @click="addItem(newItem)">追加</button>
   <button @click="deleteItem">完了したものを削除</button>
   <table>
-    <tr v-for="item in items">
+    <tr v-for="item in items" :key="item">
       <td :class="{ 'done' : item.isDone }"><input type="checkbox" v-model="item.isDone">{{ item.value }}</td>
     </tr>
   </table>
