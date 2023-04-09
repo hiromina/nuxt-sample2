@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface Props {
-  linkTo?: string
-  linkPage?: string
+  linkTo?: string;
+  linkPage?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {

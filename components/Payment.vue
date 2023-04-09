@@ -98,7 +98,7 @@ const deleteItem = (index: number) => {
   justify-content: space-between;
   align-items: center;
   height: 80px;
-  width: 800px;
+  width: 400px;
   background-color: aliceblue;
   margin-top: 8px;
 }
